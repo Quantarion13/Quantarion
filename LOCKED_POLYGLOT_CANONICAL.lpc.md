@@ -2,8 +2,6 @@
 
 AQARION-FREEZE v1.0 — CANONICAL WORKFLOW BLUEPRINT
 
-  OVERALL PHILOSOPHY
-
 Purpose: Fully deterministic, federated, multi-layered AI-educational ecosystem.
 
 Goal: Preserve, visualize, teach, and amplify hypergraph-based intelligence and φ⁴³/φ³⁷⁷ numeric architectures globally.
