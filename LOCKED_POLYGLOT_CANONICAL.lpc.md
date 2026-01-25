@@ -4,25 +4,6 @@ AQARION-FREEZE v1.0 — CANONICAL WORKFLOW BLUEPRINT
 
 Purpose: Fully deterministic, federated, multi-layered AI-educational ecosystem.
 
-Goal: Preserve, visualize, teach, and amplify hypergraph-based intelligence and φ⁴³/φ³⁷⁷ numeric architectures globally.
-
-Guiding Principles:
-
-L0 Physical Grounding → Reality first
-
-Layer Isolation (L0-L6) → no collapse
-
-Numeric Certainty → φ⁴³=22.936, φ³⁷⁷=27,841, Kaprekar=6174
-
-Edge Sovereignty → Low-power universal access
-
-Federation Consent → Sovereign nodes, no central failure
-
-100-Year Preservation → Multi-medium + human-readable
-
-
-
-
 ---
 
 2️⃣ CANONICAL LAYER-BY-LAYER FLOW
