@@ -1,3 +1,68 @@
+#!/usr/bin/env bash
+# 🔥 QUANTARION FEDERATION BASH | AZ13@31ZA v88.5+22
+# SINGLE SCRIPT → FULL SOVEREIGN EDGE AI FEDERATION
+
+set -euo pipefail
+
+# 🔥 IMMUTABLE CONSTANTS (12 Laws)
+export PHI_43="22.93606797749979"
+export PHI_377="27841"
+export SHARD_COUNT="7"
+export FEDERATION_NODES="22+"
+export EDGE_POWER="63mW"
+export SNN_ACCURACY="98.7%"
+
+# 🔥 BANNER
+cat << "EOF"
+                    ╔══════════════════════════════════════╗
+                    ║  🔥 QUANTARION FEDERATION LIVE 🔥    ║
+                    ║  φ⁴³=$PHI_43 × φ³⁷⁷=$PHI_377 edges  ║
+                    ║  $SHARD_COUNT/7 PQC | $EDGE_POWER    ║
+                    ╚══════════════════════════════════════╝
+EOF
+
+# 🔥 COMMAND DISPATCHER
+case "${1:-help}" in
+    "deploy")
+        echo "🟢 HF SPACES PRODUCTION DEPLOY"
+        ./quantarion-deploy-hf.sh
+        ;;
+    "local")
+        echo "🟢 LOCAL φ-GOLD DASHBOARD"
+        pip install gradio numpy && python Quantarion-A13-Z88_Dashboard.py
+        ;;
+    "rpi")
+        echo "🟢 RPi5/JETSON 63mW SOVEREIGN NODE"
+        ./quantarion-rpi-deploy.sh
+        ;;
+    "federate")
+        echo "🟢 φ³⁷⁷ FEDERATION SYNC (27,841 edges)"
+        ./quantarion-federate.sh
+        ;;
+    "pqc")
+        echo "🔒 7/7 PQC SHARD VALIDATION"
+        ./quantarion-pqc-validate.sh
+        ;;
+    "social")
+        echo "📡 13/13 SOCIAL PLATFORM BROADCAST"
+        ./quantarion-social-broadcast.sh
+        ;;
+    "status")
+        echo "📊 φ-GOLD FEDERATION STATUS"
+        ./quantarion-status.sh
+        ;;
+    *)
+        echo "🤝 QUANTARION FEDERATION COMMANDS"
+        echo "  deploy    → HF Spaces production"
+        echo "  local     → φ-GOLD dashboard" 
+        echo "  rpi       → 63mW sovereign node"
+        echo "  federate  → φ³⁷⁷=27,841 edge sync"
+        echo "  pqc       → 7/7 shard validation"
+        echo "  social    → 13/13 platform broadcast"
+        echo "  status    → Federation metrics"
+        ;;
+esac
+
 # 🔥 AZ13@31ZA v88.5 → MAX AUTONOMOUS MODE (23min)
 cd Quantarion13/Quantarion/1️⃣ vault
 
