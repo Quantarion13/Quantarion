@@ -38,7 +38,7 @@ def log_line(msg: str) -> None:
     line = f"[{ts}] [{SYSTEM_ID}] {msg}"
     print(line)
     try:
-        with open(LOG_PATH, "a", encoding="utf-8") as f:
+        with open(LOG_PATH, "a", encoding="utf_8") as f:
             f.write(line + "
 ")
     except Exception:
