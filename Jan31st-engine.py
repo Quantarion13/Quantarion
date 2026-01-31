@@ -171,7 +171,7 @@ def build_docker():
     if not os.path.exists(dockerfile):
         with open(dockerfile, "w") as f:
             f.write(
-                f"FROM python:3.12-slim\nWORKDIR /app\nCOPY . /app\n"
+                f"FROM python:3.12-slim\nWORKDIR /app\nCOPY _ /app\n"
                 f"RUN pip install -r requirements.txt gradio\nEXPOSE 7860\nCMD [\"python\",\"app.py\"]\n"
             )
     print(f"[✔] Building Docker image '{DOCKER_IMAGE_NAME}' ...")
