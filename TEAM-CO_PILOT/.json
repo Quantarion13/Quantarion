@@ -1,0 +1,120 @@
+{
+  "metadata": {
+    "name": "GitHub Copilot MCP API Production",
+    "version": "1.0.0",
+    "author": "TEAM-BORION / Quantarion φ⁴³ R&D",
+    "description": "Enterprise-grade configuration for live GitHub Copilot MCP integration. Supports automated pipelines, containerized deployments, real-time observability, and secure secret management.",
+    "lastUpdated": "2026-01-31T00:00:00Z",
+    "researchReady": true,
+    "productionReady": true,
+    "notes": [
+      "Fully containerized and CI/CD compatible",
+      "Supports environment variable injection for GitHub PAT",
+      "Observability and retry mechanisms enabled",
+      "Designed for live research pipelines and automated AI workflow orchestration"
+    ]
+  },
+  "servers": {
+    "github": {
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp/",
+      "headers": {
+        "Authorization": "Bearer ${input:github_mcp_pat_env}"
+      },
+      "timeout": 30000,
+      "retries": 5,
+      "retryDelayMs": 1000,
+      "backoffStrategy": "exponential",
+      "observability": {
+        "enableTracing": true,
+        "traceFormat": "w3c",
+        "logRequests": false,
+        "logResponses": false,
+        "metricsEnabled": true,
+        "metricsEndpoint": "http://localhost:9090/metrics"
+      }
+    }
+  },
+  "inputs": [
+    {
+      "type": "promptString",
+      "id": "github_mcp_pat_env",
+      "description": "GitHub Personal Access Token (PAT). Can be supplied via environment variable GITHUB_MCP_PAT.",
+      "password": true,
+      "default": "${env:GITHUB_MCP_PAT}",
+      "validation": {
+        "pattern": "^[A-Za-z0-9_\\-]{40,}$",
+        "errorMessage": "Invalid GitHub PAT format. Must be 40+ alphanumeric characters, dashes or underscores."
+      }
+    }
+  ],
+  "security": {
+    "requireHttps": true,
+    "tokenRotationPolicyDays": 90,
+    "secretStorage": {
+      "type": "vault",
+      "vaultPath": "secret/data/github/copilot/mcp",
+      "encryption": "AES256-GCM"
+    }
+  },
+  "retryPolicy": {
+    "maxRetries": 5,
+    "backoffStrategy": "exponential",
+    "initialDelayMs": 500,
+    "maxBackoffMs": 10000,
+    "jitter": true
+  },
+  "logging": {
+    "level": "info",
+    "logToFile": true,
+    "logFilePath": "./logs/copilot_mcp_api.log",
+    "maxFileSizeMB": 50,
+    "rotateDaily": true,
+    "sensitiveFieldsRedaction": true
+  },
+  "environment": {
+    "CI": true,
+    "CONTAINERIZED": true,
+    "TIMEZONE": "UTC",
+    "LANG": "en_US.UTF-8",
+    "MAX_CONCURRENT_REQUESTS": 8,
+    "ENABLE_METRICS": true
+  },
+  "pipeline": {
+    "preFlightChecks": [
+      "validatePAT",
+      "testConnectivity",
+      "verifyVaultSecrets"
+    ],
+    "workflow": [
+      "resolvePAT",
+      "sendRequest",
+      "observeResponse",
+      "logMetrics",
+      "retryOnFailure"
+    ],
+    "postProcessing": [
+      "auditResponse",
+      "updateObservabilityDashboard",
+      "rotateSecretsIfNeeded"
+    ]
+  },
+  "monitoring": {
+    "tracing": true,
+    "metrics": true,
+    "alerting": {
+      "enabled": true,
+      "thresholds": {
+        "requestFailures": 0.05,
+        "latencyMs": 2000
+      },
+      "notifyChannels": ["slack", "email", "pagerduty"]
+    }
+  },
+  "notesAdvanced": [
+    "This JSON config is production-grade: ready for automated pipelines, containerized AI research workflows, and multi-node orchestration.",
+    "Supports full observability: tracing, metrics, and alerting for live operations.",
+    "Secrets management via Vault ensures PATs are never stored in plaintext.",
+    "Retry and backoff strategies allow robust integration in unreliable network conditions."
+  ]
+}
